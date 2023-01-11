@@ -158,6 +158,3 @@ class Menuplan:
                 self.meals[i*self.meals_per_day + j].print(verbose)
                 
             print("")
-
-if __name__ == '__main__':
-    print(helper(['asd', 'asdf']))
