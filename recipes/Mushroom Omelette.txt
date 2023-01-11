@@ -1,0 +1,7 @@
+[RECIPE]
+name = Mushroom omelette
+flavors = savory
+ingredients = egg, mushroom
+nutritional value = 0
+preparation time = 5
+

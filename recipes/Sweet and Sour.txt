@@ -1,0 +1,7 @@
+[RECIPE]
+name = Sweet and Sour
+flavors = sweet, sour
+ingredients = rice, poulet
+nutritional value = 0
+preparation time = 0
+

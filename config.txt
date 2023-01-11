@@ -1,0 +1,13 @@
+[GENERAL]
+days = 5
+standard ingredient repetition threshold = 2
+standard flavor repetition threshold = 0
+
+[INGREDIENT EXCEPTIONS]
+fish = 4
+poulet = 2
+beef = 2
+
+[FLAVOR EXCEPTIONS]
+sweet = 3
+

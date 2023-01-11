@@ -1,0 +1,7 @@
+[RECIPE]
+name = Spaghetti Carbonara
+flavors = savory
+ingredients = pasta, cream
+nutritional value = 0
+preparation time = 0
+

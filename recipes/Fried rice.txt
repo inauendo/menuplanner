@@ -1,0 +1,7 @@
+[RECIPE]
+name = Fried rice
+flavors = savory
+ingredients = rice
+nutritional value = 0
+preparation time = 0
+

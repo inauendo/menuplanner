@@ -1,0 +1,7 @@
+[RECIPE]
+name = Tomato soup
+flavors = savory
+ingredients = tomato
+nutritional value = 0
+preparation time = 0
+

@@ -1,0 +1,6 @@
+[RECIPE]
+name = 
+flavors = 
+ingredients = 
+preparation time = 
+nutritional value = 

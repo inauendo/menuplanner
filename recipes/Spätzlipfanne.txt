@@ -1,0 +1,7 @@
+[RECIPE]
+name = Spätzlipfanne
+flavors = savory
+ingredients = spätzli
+nutritional value = 0
+preparation time = 0
+

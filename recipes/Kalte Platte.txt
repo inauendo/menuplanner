@@ -1,0 +1,7 @@
+[RECIPE]
+name = Kalte Platte
+flavors = savory, sweet
+ingredients = cheese, aufschnitt
+nutritional value = 0
+preparation time = 0
+

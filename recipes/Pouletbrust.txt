@@ -1,0 +1,7 @@
+[RECIPE]
+name = Pouletbrust
+flavors = savory
+ingredients = poulet
+nutritional value = 0
+preparation time = 0
+

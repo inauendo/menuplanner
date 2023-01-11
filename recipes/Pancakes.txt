@@ -1,0 +1,7 @@
+[RECIPE]
+name = Pancakes
+flavors = sweet
+ingredients = pancake
+nutritional value = 0
+preparation time = 0
+

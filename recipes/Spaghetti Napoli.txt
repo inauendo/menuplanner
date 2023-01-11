@@ -1,0 +1,7 @@
+[RECIPE]
+name = Spaghetti Napoli
+flavors = savory
+ingredients = tomato, pasta
+nutritional value = 0
+preparation time = 0
+

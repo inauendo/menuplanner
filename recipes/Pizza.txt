@@ -1,0 +1,7 @@
+[RECIPE]
+name = Pizza
+flavors = savory
+ingredients = bread, tomato
+nutritional value = 0
+preparation time = 0
+

@@ -1,0 +1,7 @@
+[RECIPE]
+name = Apple crumble
+flavors = sweet
+ingredients = oatmeal, apple
+nutritional value = 0
+preparation time = 0
+

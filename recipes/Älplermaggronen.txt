@@ -1,0 +1,7 @@
+[RECIPE]
+name = Älplermaggronen
+flavors = savory, sweet
+ingredients = pasta, cream, bacon
+nutritional value = 0
+preparation time = 0
+

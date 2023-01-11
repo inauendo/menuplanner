@@ -1,0 +1,7 @@
+[RECIPE]
+name = Birchermüesli
+flavors = sweet
+ingredients = yoghurt, oatmeal
+nutritional value = 0
+preparation time = 0
+

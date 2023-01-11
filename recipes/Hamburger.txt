@@ -1,0 +1,7 @@
+[RECIPE]
+name = Hamburger
+flavors = savory
+ingredients = beef, bread
+nutritional value = 0
+preparation time = 0
+
