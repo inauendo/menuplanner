@@ -1,7 +1,7 @@
 from menu import *
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import pyqtSignal, pyqtSlot
+from PyQt5.QtCore import pyqtSignal
 import configparser
 
 class Menuplan_window(QWidget):
