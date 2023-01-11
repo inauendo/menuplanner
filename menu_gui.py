@@ -38,6 +38,7 @@ class Menuplan_window(QWidget):
         self.setLayout(self.main_layout)
 
     def refresh_selectors(self):
+        '''read in settings from config file and available recipes from recipe folder. Then add these to possible options for the dropdown boxes.'''
         self.plan.read(self.plan.recipedir, self.plan.configfilepath)
         self.selector_list = [QComboBox() for i in range(self.plan.meals_per_day*self.plan.days)]
 
@@ -83,18 +84,20 @@ class Menuplan_window(QWidget):
         self.lib.show()
 
     def launch_options(self):
+        '''launches the settings window'''
         self.options = Config_window(menu=self.plan)
         self.options.ok_button.clicked.connect(self.refresh_selectors)
         self.options.show()
         
 
 class Library_window(QWidget):
+    '''Class for the library window'''
 
     closeSignal = pyqtSignal()  #signal to emit when library window is closed
 
     def __init__(self, menu):
         super().__init__()
-        self.plan = menu
+        self.plan = menu    #copy the menuplan object from the main window
         self.setWindowTitle('Recipe Library')
 
         #layouts
@@ -120,7 +123,7 @@ class Library_window(QWidget):
 
     def refresh(self):
         '''gets the recipe list from the menuplan and lists the recipes'''
-        self.plan.read(self.plan.recipedir, self.plan.configfilepath)
+        self.plan.read(self.plan.recipedir, self.plan.configfilepath)   #refresh recipes
         self.entrylist = [(recipe, QPushButton('edit'), QPushButton('remove')) for recipe in self.plan.recipes]
 
         for i in reversed(range(self.upper_layout.count())): 
@@ -140,12 +143,12 @@ class Library_window(QWidget):
         
 
     def closeEvent(self, event):
-        #overload closeEvent such that the closing signal is emitted when the window is closed
+        '''overload closeEvent such that the closing signal is emitted when the window is closed'''
         self.closeSignal.emit()
         event.accept()
 
     def edit_recipe_func(self, rec):
-        '''functionaly for the edit recipe buttons.'''
+        '''functionaly for the edit recipe buttons, opens a Recipe dialog window.'''
         self.editor = Recipe_dialog(recipedir=self.plan.recipedir)
         self.editor.namebox.setText(rec.name)
         flavorstr = ''
@@ -178,11 +181,13 @@ class Library_window(QWidget):
         self.editor.show()
 
     def new_rec_accepted(self):
+        '''functionality for the "OK" button in the recipe dialog window. Refreshes the menuplan object (background) and the recipe library window.'''
         self.plan.read(self.plan.recipedir, self.plan.configfilepath)
         self.refresh()
 
 
 class Recipe_dialog(QWidget):
+    '''Window for editing and viewing recipes in the recipe library.'''
     def __init__(self, recipedir = ''):
         super().__init__()
         self.recipedir = recipedir
@@ -214,6 +219,7 @@ class Recipe_dialog(QWidget):
         self.setLayout(self.window_layout)
 
     def ok_button_func(self):
+        '''functionality for the "OK" button. Writes a new text file to the recipe directory with the settings entered in the window.'''
         config = configparser.ConfigParser()
         config['RECIPE'] = {'name': self.namebox.text(), 'flavors': self.flavorbox.text(), 'ingredients': self.ingredientbox.text(), 'nutritional value': self.nutritionbox.value(), 'preparation time': self.preptimebox.value()}
         with open(self.recipedir+"/"+self.namebox.text()+".txt", 'w') as configfile:
@@ -221,7 +227,7 @@ class Recipe_dialog(QWidget):
         self.close()
 
 class Config_window(QWidget):
-
+    '''Class for the settings window.'''
     def __init__(self, menu):
         super().__init__()
         self.plan = menu
@@ -287,6 +293,7 @@ class Config_window(QWidget):
         self.setLayout(self.window_layout)
 
     def draw_exceptions(self):
+        '''edit the layout containing flavor and ingredient exceptions'''
         #edit middle layout
         self.temp_layout_ing = QGridLayout()
         j=0
@@ -321,6 +328,7 @@ class Config_window(QWidget):
 
 
     def add_new_ing_exp(self):
+        '''functionality for the "Add new exception" button in the settings window, under ingredients. Adds a new line for a new ingredient exception.'''
         new_index = self.temp_layout_ing.rowCount()
         for entry in [QLabel('Avoid'), QLineEdit(), QLabel('for'), QSpinBox(), QLabel('meals.')]:
             self.temp_layout_ing.addWidget(entry)
@@ -329,6 +337,7 @@ class Config_window(QWidget):
         self.temp_layout_ing.addWidget(rem_button)
 
     def add_new_flav_exp(self):
+        '''functionality for the "Add new exception" button in the settings window, under flavors. Adds a new line for a new flavor exception.'''
         new_index = self.temp_layout_flav.rowCount()
         for entry in [QLabel('Avoid'), QLineEdit(), QLabel('for'), QSpinBox(), QLabel('meals.')]:
             self.temp_layout_flav.addWidget(entry)
@@ -337,14 +346,17 @@ class Config_window(QWidget):
         self.temp_layout_flav.addWidget(rem_button)
 
     def remove_exception_ing(self, index):
+        '''functionality for the "remove" button of ingredient exceptions.'''
         for j in range(5, -1, -1):
             self.temp_layout_ing.itemAtPosition(index, j).widget().deleteLater()
 
     def remove_exception_flav(self, index):
+        '''functionality for the "remove" button of flavor exceptions.'''
         for j in range(5, -1, -1):
             self.temp_layout_flav.itemAtPosition(index, j).widget().deleteLater()
 
     def accept(self):
+        '''functionality for the "OK" button in the settings window. Edits the config file with the options entered in the settings window.'''
         config = configparser.ConfigParser()
         config['GENERAL'] = {'days': self.days_box.value(), 'standard ingredient repetition threshold': str(self.st_ing_rep_thre_box.value()), 'standard flavor repetition threshold': str(self.st_flav_rep_thre_box.value())}
         ing_dict = {}
